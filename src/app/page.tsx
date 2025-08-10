@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import CategorySelect from "@/components/commom/category-select";
 import { Header } from "@/components/commom/header";
 import ProductList from "@/components/commom/product-list";
 import { db } from "@/db";
@@ -10,7 +11,7 @@ const Home = async () => {
       variants: true,
     },
   });
-  console.log(products);
+  const categories = await db.query.categoryTable.findMany({});
   return (
     <>
       <Header />
@@ -27,6 +28,10 @@ const Home = async () => {
         </div>
 
         <ProductList products={products} title="Mais Vendidos" />
+
+        <div className="px-5">
+          <CategorySelect categories={categories} />
+        </div>
 
         <div className="px-5">
           <Image

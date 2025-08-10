@@ -21,13 +21,13 @@ const ProductItem = ({ product }: ProductItemProps) => {
         height={200}
         className="rounded-3xl"
       />
-      <div className="flex flex-col gap-1 max-w-[200px]">
+      <div className="flex max-w-[200px] flex-col gap-1">
         <p className="truncate text-sm font-medium">{product.name}</p>
-        <p className="font-muted-foreground truncate text-xs font-medium">
+        <p className="text-muted-foreground truncate text-xs font-medium">
           {product.description}
         </p>
         <p className="truncate text-sm font-semibold">
-            {formatCentsToBRL(firstVariant.priceInCents)}
+          {formatCentsToBRL(firstVariant.priceInCents)}
         </p>
       </div>
     </Link>

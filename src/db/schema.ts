@@ -55,7 +55,7 @@ export const accountTable = pgTable("account", {
   updatedAt: timestamp("updated_at").notNull(),
 });
 
-export const verification = pgTable("verification", {
+export const verificationTable = pgTable("verification", {
   id: text("id").primaryKey(),
   identifier: text("identifier").notNull(),
   value: text("value").notNull(),
@@ -79,7 +79,7 @@ export const categoryRelations = relations(categoryTable, ({ many }) => ({
   products: many(productTable),
 }));
 
-export const productTable = pgTable("products", {
+export const productTable = pgTable("product", {
   id: uuid().primaryKey().defaultRandom(),
   categoryId: uuid("category_id")
     .notNull()
@@ -89,6 +89,14 @@ export const productTable = pgTable("products", {
   description: text().notNull(),
   createdAt: timestamp("created_at").notNull().defaultNow(),
 });
+
+export const productRelations = relations(productTable, ({ one, many }) => ({
+  category: one(categoryTable, {
+    fields: [productTable.categoryId],
+    references: [categoryTable.id],
+  }),
+  variants: many(productVariantTable),
+}));
 
 export const productVariantTable = pgTable("product_variant", {
   id: uuid().primaryKey().defaultRandom(),
@@ -101,16 +109,6 @@ export const productVariantTable = pgTable("product_variant", {
   priceInCents: integer("price_in_cents").notNull(),
   imageUrl: text("image_url").notNull(),
   createdAt: timestamp("created_at").notNull().defaultNow(),
-});
-
-export const productionRelations = relations(productTable, ({ one, many }) => {
-  return {
-    category: one(categoryTable, {
-      fields: [productTable.categoryId],
-      references: [categoryTable.id],
-    }),
-    variants: many(productVariantTable),
-  };
 });
 
 export const productVariantRelations = relations(

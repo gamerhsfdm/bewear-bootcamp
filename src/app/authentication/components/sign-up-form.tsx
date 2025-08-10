@@ -92,7 +92,7 @@ const SingUpForm = () => {
 
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-            <CardContent className="grid gap-6">
+            <CardContent className="grid w-full gap-6">
               <FormField
                 control={form.control}
                 name="name"

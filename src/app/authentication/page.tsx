@@ -5,16 +5,16 @@ import SignUpForm from "./components/sign-up-form";
 
 function Authentication() {
   return (
-    <div className="flex w-full max-w-sm flex-col gap-6 p-5">
+    <div className="flex w-full flex-col gap-6 p-5">
       <Tabs defaultValue="sign-in">
         <TabsList>
           <TabsTrigger value="sign-in">Account</TabsTrigger>
           <TabsTrigger value="sign-up">Password</TabsTrigger>
         </TabsList>
-        <TabsContent value="sign-in">
+        <TabsContent value="sign-in" className="w-full">
           <SignInForm />
         </TabsContent>
-        <TabsContent value="sign-up">
+        <TabsContent value="sign-up" className="w-full">
           <SignUpForm />
         </TabsContent>
       </Tabs>
